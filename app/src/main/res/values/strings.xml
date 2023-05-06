@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Job_aid</string>
+    <string name="Resume">Resumes</string>
+    <string name="createNewResume">Create New Resume +</string>
+    <string name="Home">Home</string>
+    <string name="Bookmark_btn">Bookmark</string>
+    <string name="Resume_btn">Resume</string>
+    <string name="Tips_btn">Tips</string>
+    <string name="me_btn">me</string>
+    <string name="slcTemplate">Select a Template</string>
+    <string name="GenerateBtn">Generate</string>
+    <string name="generate_btn">Generate</string>
+    <string name="Title">Title</string>
+</resources>

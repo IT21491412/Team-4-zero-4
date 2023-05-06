@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "660285295717",
+    "project_id": "jobaid-d019a",
+    "storage_bucket": "jobaid-d019a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660285295717:android:02257f3a0840016fec8a8c",
+        "android_client_info": {
+          "package_name": "com.example.job_aid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660285295717-slrehv9nbl3l6dl5p9kid8igor43k5mh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApt5SVvBuTgm3vOuubPoAGXDwVyeFPLKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660285295717-slrehv9nbl3l6dl5p9kid8igor43k5mh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

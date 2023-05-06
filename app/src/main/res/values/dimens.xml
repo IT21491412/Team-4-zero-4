@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="resumeBox">100dp</dimen>
+    <dimen name="resumeLayoutMarSt">45dp</dimen>
+    <dimen name="navBtnWidth">50dp</dimen>
+    <dimen name="BottomNavText">12sp</dimen>
+    <dimen name="BottomNavbarText">14sp</dimen>
+    <dimen name="GenBtnRadius">150dp</dimen>
+    <dimen name="TipsLayoutStart">36dp</dimen>
+    <dimen name="TipInputWidth">350dp</dimen>
+</resources>
