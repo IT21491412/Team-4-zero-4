@@ -11,4 +11,22 @@
     <string name="GenerateBtn">Generate</string>
     <string name="generate_btn">Generate</string>
     <string name="Title">Title</string>
+
+
+
+
+<!--IT21482502-->
+    <string name="login">     Login     </string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="username">Name</string>
+    <string name="profile">Profile</string>
+    <string name="signup_text">Are you new user?  Register !</string>
+    <string name="create">     Create     </string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="city">City</string>
+    <string name="education">Education</string>
+
 </resources>

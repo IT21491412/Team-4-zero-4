@@ -16,4 +16,9 @@
 
     <color name="boxbottem">#210c4f</color>
 
+
+<!--IT21482502-->
+    <color name="box">#E5E4F9</color>
+    <color name="textmaain">#210C4F</color>
+
 </resources>
