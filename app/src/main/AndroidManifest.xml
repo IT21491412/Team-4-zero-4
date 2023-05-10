@@ -74,6 +74,34 @@
             </intent-filter>
         </activity>
 
+
+<!--        Kumashi-->
+
+        <activity
+            android:name=".InsertionActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".FetchingActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".CompanyDetailsActivity"
+            android:exported="true"/>
+
+
+
+
+        <activity
+            android:name="CompanyHome"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

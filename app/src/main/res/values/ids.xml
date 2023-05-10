@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="etEmpName" type="id" />
+    <item name="etEmpAge" type="id" />
+    <item name="etEmpSalary" type="id" />
+</resources>
