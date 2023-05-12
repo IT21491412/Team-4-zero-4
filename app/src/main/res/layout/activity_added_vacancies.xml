@@ -9,10 +9,11 @@
         android:id="@+id/imageViewDetails"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginBottom="532dp"
+        android:layout_marginBottom="588dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/vector_ek4"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/vector_ek4" />
 
     <TextView
         android:id="@+id/textViewAddedVacancy"
@@ -29,24 +30,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/search_bar"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="64dp"
-        android:background="@drawable/rectangle_1_shape"
-        android:backgroundTint="#E5E4F9"
-        android:elevation="10dp"
-        android:inputType=""
-        android:paddingLeft="10dp"
-        android:paddingTop="15dp"
-        android:text="Search..."
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <!--    <TextView-->
     <!--        android:id="@+id/vid"-->
@@ -73,6 +56,24 @@
     <!--        android:textStyle="bold" />-->
 
 
+    <TextView
+        android:id="@+id/search_bar"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="68dp"
+        android:background="@drawable/rectangle_1_shape"
+        android:backgroundTint="#E5E4F9"
+        android:elevation="10dp"
+        android:inputType=""
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:text="Search..."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvVacancy"
         android:layout_width="match_parent"
@@ -88,21 +89,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinatorLayout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        tools:ignore="MissingConstraints">
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginTop="552dp"
+        android:layout_marginTop="604dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="#f6f6f6"
         app:fabCradleMargin="8dp"
