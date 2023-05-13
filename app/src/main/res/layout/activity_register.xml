@@ -129,4 +129,31 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_register"
         app:layout_constraintVertical_bias="0.789" />
 
+<!--    Radio Condition  -->
+
+    <RadioGroup
+        android:id="@+id/userTypeRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/radioJobSeeker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Job Seeker"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radioCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company"/>
+
+    </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

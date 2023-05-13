@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.job_aid.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class Login : AppCompatActivity() {
 
@@ -34,8 +35,15 @@ class Login : AppCompatActivity() {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, Home::class.java)
-                        startActivity(intent)
+
+                        val currentUser = firebaseAuth.currentUser
+                        if (currentUser != null) {
+                            val userId = currentUser.uid
+                            getUserType(userId)
+                        }else{
+                            Toast.makeText(this, "Failed To get user data", Toast.LENGTH_SHORT).show()
+                        }
+
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
 
@@ -45,6 +53,36 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this, "Fill All Fields !!", Toast.LENGTH_SHORT).show()
 
             }
+        }
+    }
+
+
+    private fun getUserType(userId: String) {
+        val databaseRef = FirebaseDatabase.getInstance().reference.child("users").child(userId)
+        databaseRef.get().addOnSuccessListener { dataSnapshot ->
+            val userType = dataSnapshot.child("userType").value.toString()
+
+
+
+            if (userType == "job_seeker") {
+                val intent = Intent(this, Home::class.java)
+                startActivity(intent)
+                finish()
+
+            } else if (userType == "company") {
+                val intent = Intent(this, VacancyFetching::class.java)
+                startActivity(intent)
+                finish()
+
+            } else {
+                Toast.makeText(this, "Invalid user type", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener { exception ->
+            Toast.makeText(
+                this,
+                "Failed to get user information: ${exception.message}",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

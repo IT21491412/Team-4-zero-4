@@ -38,6 +38,7 @@ class Register : AppCompatActivity() {
             val email = binding.email.text.toString()
             val pass = binding.password.text.toString()
             val confirmPass = binding.confirmPassword.text.toString()
+            val userType = if(binding.radioJobSeeker.isChecked) "job_seeker" else "company"
 
 
             if (username.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()){
@@ -46,7 +47,7 @@ class Register : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener{
                         if(it.isSuccessful){
                             val databaseRef = database.reference.child("users").child(firebaseAuth.currentUser!!.uid)
-                            val users :Users = Users( username ,email, firebaseAuth.currentUser!!.uid)
+                            val users :Users = Users( username ,email, firebaseAuth.currentUser!!.uid,userType)
 
                             databaseRef.setValue(users).addOnCompleteListener{
                                 if(it.isSuccessful){

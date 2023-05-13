@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
+
+
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
