@@ -1,6 +1,7 @@
 package com.example.job_aid
 
 import android.content.Intent
+import android.hardware.SensorAdditionalInfo
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Button
@@ -18,8 +19,11 @@ class VacancyDetailsActivity: AppCompatActivity() {
     private lateinit var tvJbRole: TextView
     private lateinit var tvJD: TextView
     private lateinit var tvOv: TextView
+    private lateinit var tvAdditional: TextView
     private lateinit var btnUpdate: Button
     private lateinit var btnDelete: Button
+    private lateinit var backupdatebutton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?){
 
@@ -27,6 +31,8 @@ class VacancyDetailsActivity: AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vacancy_details)
+
+        backupdatebutton = findViewById(R.id.backupdatebutton)
 
         initView()
         setValuesToViews()
@@ -43,6 +49,11 @@ class VacancyDetailsActivity: AppCompatActivity() {
                 intent.getStringExtra("vid").toString()
             )
         }
+
+        backupdatebutton.setOnClickListener {
+            val thisIntent = Intent(this,VacancyFetching::class.java)
+            startActivity(thisIntent)
+        }
     }
 
 
@@ -51,6 +62,7 @@ class VacancyDetailsActivity: AppCompatActivity() {
         tvJbRole = findViewById(R.id.tvJbRole)
         tvJD = findViewById(R.id.tvJD)
         tvOv = findViewById(R.id.tvOv)
+        tvAdditional = findViewById(R.id.tvAdditional)
 
         btnUpdate = findViewById(R.id.btnUpdate)
         btnDelete = findViewById(R.id.btnDelete)
@@ -62,6 +74,7 @@ class VacancyDetailsActivity: AppCompatActivity() {
         tvJbRole.text=intent.getStringExtra("jbRl")
         tvJD.text=intent.getStringExtra("jobDes")
         tvOv.text=intent.getStringExtra("comOver")
+        tvAdditional.text=intent.getStringExtra( "add")
     }
     private fun deleteRecord(
         id: String
@@ -94,11 +107,13 @@ class VacancyDetailsActivity: AppCompatActivity() {
         val etJbRole = mDialogView.findViewById<EditText>(R.id.etJbRole)
         val etJD = mDialogView.findViewById<EditText>(R.id.etJD)
         val etOv = mDialogView.findViewById<EditText>(R.id.etOv)
+        val etAdd = mDialogView.findViewById<EditText>(R.id.etAdd)
         val btnUpdateData = mDialogView.findViewById<Button>(R.id.btnUpdateData)
 
         etJbRole.setText(intent.getStringExtra("jbRl").toString())
         etJD.setText(intent.getStringExtra("jobDes").toString())
         etOv.setText(intent.getStringExtra("comOver").toString())
+        etAdd.setText(intent.getStringExtra("add").toString())
 
         mDialog.setTitle("Updating $jbRl Record")
 
@@ -110,7 +125,8 @@ class VacancyDetailsActivity: AppCompatActivity() {
                 vid,
                 etJbRole.text.toString(),
                 etJD.text.toString(),
-                etOv.text.toString()
+                etOv.text.toString(),
+                etAdd.text.toString()
             )
             Toast.makeText(applicationContext, "Vacancy Data Updated", Toast.LENGTH_LONG).show()
 
@@ -118,6 +134,7 @@ class VacancyDetailsActivity: AppCompatActivity() {
             tvJbRole.text=etJbRole.text.toString()
             tvJD.text= etJD.text.toString()
             tvOv.text= etOv.text.toString()
+            tvAdditional.text= etAdd.text.toString()
 
             alertDialog.dismiss()
         }
@@ -127,10 +144,11 @@ class VacancyDetailsActivity: AppCompatActivity() {
         id:String,
         job:String,
         description:String,
-        overview:String
+        overview:String,
+        additionalInformation:String
     ){
         val dbRef = FirebaseDatabase.getInstance().getReference("Vacancies").child(id)
-        val vacInfo = VacancyModel(id, job, description, overview)
+        val vacInfo = VacancyModel(id, job, description, overview, additionalInformation)
         dbRef.setValue(vacInfo)
     }
 }

@@ -32,6 +32,15 @@
         android:hint="OverView"
         android:inputType="textPersonName" />
 
+    <EditText
+        android:id="@+id/etAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Additional Company Information"
+        android:inputType="textPersonName" />
+
         <Button
             android:id="@+id/btnUpdateData"
             android:layout_width="wrap_content"

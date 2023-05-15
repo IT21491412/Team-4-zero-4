@@ -1,5 +1,6 @@
 package com.example.job_aid
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -14,8 +15,12 @@ class VacancyAdd : AppCompatActivity() {
     private lateinit var jobRole: EditText
     private lateinit var jobDesc: EditText
     private lateinit var companyOver: EditText
+    private lateinit var additional: EditText
     private lateinit var btnSubmitData: Button
     private lateinit var btnCancelData: Button
+    private lateinit var backbutton: Button
+
+
 
     private lateinit var dbRef: DatabaseReference
 
@@ -31,13 +36,27 @@ class VacancyAdd : AppCompatActivity() {
         jobRole = findViewById(R.id.textViewJobRoleFill)
         jobDesc = findViewById(R.id.textViewJobDesFill)
         companyOver = findViewById(R.id.textViewOverViewFill)
+        additional = findViewById(R.id.textViewAdditional)
         btnSubmitData = findViewById(R.id.submit)
         btnCancelData = findViewById(R.id.button7)
+        backbutton = findViewById(R.id.backbutton)
 
         dbRef = FirebaseDatabase.getInstance().getReference("Vacancies")
 
         btnSubmitData.setOnClickListener {
             saveVacancyData()
+        }
+
+        btnCancelData.setOnClickListener{
+            jobRole.text.clear()
+            jobDesc.text.clear()
+            companyOver.text.clear()
+            additional.text.clear()
+        }
+
+        backbutton.setOnClickListener {
+            val thisIntent = Intent(this,VacancyFetching::class.java)
+            startActivity(thisIntent)
         }
 
     }
@@ -46,6 +65,7 @@ class VacancyAdd : AppCompatActivity() {
         val jbRl = jobRole.text.toString()
         val jobDes = jobDesc.text.toString()
         val comOver = companyOver.text.toString()
+        val add = additional.text.toString()
         if (jbRl.isEmpty()) {
             jobRole.error = "Please fill the field"
         }
@@ -55,21 +75,28 @@ class VacancyAdd : AppCompatActivity() {
         if (comOver.isEmpty()) {
             companyOver.error = "Please fill the field"
         }
+        if (add.isEmpty()) {
+            additional.error = "Please fill the field"
+        }
 
-        val vid = dbRef.push().key!!
+        else {
 
-        val vacancy = VacancyModel(vid , jbRl , jobDes , comOver)
+            val vid = dbRef.push().key!!
 
-        dbRef.child(vid).setValue(vacancy)
-            .addOnCompleteListener{
-                Toast.makeText(this , "Vacancy added successfully",Toast.LENGTH_LONG).show()
+            val vacancy = VacancyModel(vid, jbRl, jobDes, comOver, add)
 
-                jobRole.text.clear()
-                jobDesc.text.clear()
-                companyOver.text.clear()
+            dbRef.child(vid).setValue(vacancy)
+                .addOnCompleteListener {
+                    Toast.makeText(this, "Vacancy added successfully", Toast.LENGTH_LONG).show()
 
-            }.addOnFailureListener{err ->
-                Toast.makeText(this,"Error ${err.message}", Toast.LENGTH_LONG).show()
-            }
+                    jobRole.text.clear()
+                    jobDesc.text.clear()
+                    companyOver.text.clear()
+                    additional.text.clear()
+
+                }.addOnFailureListener { err ->
+                    Toast.makeText(this, "Error ${err.message}", Toast.LENGTH_LONG).show()
+                }
+        }
     }
 }

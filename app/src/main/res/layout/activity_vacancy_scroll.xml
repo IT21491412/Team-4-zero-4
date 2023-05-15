@@ -12,18 +12,19 @@
 
         <!-- TODO: Update blank fragment layout -->
 
+
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/vector_ek4" />
 
-
         <Button
-            android:id="@+id/button"
+            android:id="@+id/backbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -64,13 +65,16 @@
         <View
             android:id="@+id/rectangle_1"
             android:layout_width="match_parent"
-            android:layout_height="1200dp"
+            android:layout_height="900dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/rectangle_1_shape"
             android:backgroundTint="#E5E4F9"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView7"
@@ -102,11 +106,13 @@
 
         <EditText
             android:id="@+id/textViewJobRoleFill"
-            android:hint="Job role"
             android:layout_width="307dp"
             android:layout_height="48dp"
             android:layout_marginTop="24dp"
-            android:background="#FEFEFE"
+            android:background="@drawable/textbox"
+            android:hint="Job role"
+            android:paddingLeft="10dp"
+            android:elevation="10dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/textViewJobRole"
             app:layout_constraintHorizontal_bias="0.012"
@@ -131,8 +137,10 @@
             android:layout_width="307dp"
             android:layout_height="90dp"
             android:layout_marginTop="40dp"
-            android:background="#FEFEFE"
             android:hint="Job Description"
+            android:background="@drawable/textbox"
+            android:elevation="10dp"
+            android:paddingLeft="10dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/textViewJobDes"
             app:layout_constraintHorizontal_bias="0.0"
@@ -157,8 +165,10 @@
             android:layout_width="307dp"
             android:layout_height="90dp"
             android:layout_marginTop="28dp"
-            android:background="#FEFEFE"
             android:hint="Company Overview"
+            android:background="@drawable/textbox"
+            android:paddingLeft="10dp"
+            android:elevation="10dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/textViewOverView"
             app:layout_constraintHorizontal_bias="0.0"
@@ -170,7 +180,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
-            android:text="Add an image"
+            android:text="Additional Company Information"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/textViewOverViewFill"
@@ -179,62 +189,33 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewOverViewFill" />
 
 
-        <TextView
-            android:id="@+id/textView3"
+        <EditText
+            android:id="@+id/textViewAdditional"
             android:layout_width="307dp"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:background="#FEFEFE"
+            android:hint="Benefits and Others"
+            android:background="@drawable/textbox"
+            android:elevation="10dp"
             android:textSize="16sp"
+            android:paddingLeft="10dp"
             app:layout_constraintEnd_toEndOf="@+id/textViewAddImage"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textViewAddImage"
             app:layout_constraintTop_toBottomOf="@+id/textViewAddImage" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:contentDescription="vector"
-            android:src="@drawable/baseline_image_24"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-
-        <Button
-            android:id="@+id/upload"
-            android:layout_width="200dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="center_horizontal|center"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="908dp"
-            android:backgroundTint="#210c4f"
-            android:gravity="center"
-            android:outlineProvider="background"
-            android:text="UPLOAD"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="991dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="832dp"
+            android:layout_marginBottom="100dp"
             android:backgroundTint="#210c4f"
             android:text="Submit"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -242,21 +223,20 @@
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="249dp"
-            android:layout_marginTop="991dp"
-            android:layout_marginEnd="68dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="832dp"
+            android:layout_marginEnd="100dp"
             android:backgroundTint="#210c4f"
             android:text="Cancel"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/submit"
             app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
 
 
 

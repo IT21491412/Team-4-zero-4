@@ -16,7 +16,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/backupdatebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -45,7 +45,7 @@
         android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="96dp"
         android:backgroundTint="#210c4f"
         android:text="Update"
         app:layout_constraintEnd_toStartOf="@+id/btnDelete"
@@ -57,7 +57,7 @@
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="96dp"
         android:backgroundTint="#210c4f"
         android:text="Delete"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +85,7 @@
             android:layout_marginRight="10dp"
             android:orientation="horizontal"
             android:weightSum="2"
+            android:background="@drawable/textbox"
 
             >
 
@@ -177,7 +178,7 @@
         <LinearLayout
 
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal"
@@ -277,9 +278,56 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/id_linn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Additional Company Information"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.4">
+
+                <TextView
+                    android:id="@+id/tvAdditional"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
