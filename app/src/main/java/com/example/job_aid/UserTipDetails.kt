@@ -1,6 +1,7 @@
 package com.example.job_aid
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.FirebaseDatabase
 
 class UserTipDetails : AppCompatActivity() {
@@ -20,11 +22,45 @@ class UserTipDetails : AppCompatActivity() {
     private lateinit var btnUpdate: Button
     private lateinit var btnDelete: Button
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_tip_details)
+
+        //      Bottom  Navigation bar Starts
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        val menu = bottomNavigationView.menu
+        val menuItem = menu.findItem(R.id.navigation_tips)
+        menuItem.isChecked = true
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+//                    startActivity(Intent(this, Homepage::class.java))
+                    true
+                }
+                R.id.navigation_bookmarks -> {
+                    startActivity(Intent(this, bookmarks::class.java))
+                    true
+                }
+                R.id.navigation_tips -> {
+                    startActivity(Intent(this, userViewTips::class.java))
+                    true
+                }
+                R.id.navigation_profile -> {
+
+//                     startActivity(Intent(this, UserProfile::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+
+//        bottom Navigation bar ends
 
         initView()
         setValuesToViews()

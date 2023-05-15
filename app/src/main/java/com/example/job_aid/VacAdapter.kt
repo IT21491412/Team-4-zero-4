@@ -43,9 +43,9 @@ class VacAdapter(private val vacList:ArrayList<VacancyModel>) :
         }
     }
 
-//    fun searchDataList(searchList: List<VacancyModel>) {
-//        vacList = searchList
-//        notifyDataSetChanged()
-//    }
+    fun searchDataList(searchList: List<VacancyModel>) {
+        val vacLists = searchList
+        notifyDataSetChanged()
+    }
 
 }

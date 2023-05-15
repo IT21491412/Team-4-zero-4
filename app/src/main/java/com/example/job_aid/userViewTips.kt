@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -30,6 +31,39 @@ class userViewTips : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_view_tips)
+
+        //      Bottom  Navigation bar Starts
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        val menu = bottomNavigationView.menu
+        val menuItem = menu.findItem(R.id.navigation_tips)
+        menuItem.isChecked = true
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    startActivity(Intent(this, Homepage::class.java))
+                    true
+                }
+                R.id.navigation_bookmarks -> {
+                    startActivity(Intent(this, bookmarks::class.java))
+                    true
+                }
+                R.id.navigation_tips -> {
+//                    startActivity(Intent(this, userViewTips::class.java))
+                    true
+                }
+                R.id.navigation_profile -> {
+
+//                     startActivity(Intent(this, UserProfile::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+
+//        bottom Navigation bar ends
 
         tipRecyclerView = findViewById(R.id.rvTip)
         tipRecyclerView.layoutManager = LinearLayoutManager(this)
