@@ -10,4 +10,10 @@
     <color name="resumeBox">#00000000</color>
     <color name="iconColor">#727272</color>
     <color name="primary_col">#210C4F</color>
+
+
+    <!--shachini-->
+
+    <color name="boxbottem">#210c4f</color>
+
 </resources>

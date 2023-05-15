@@ -12,23 +12,41 @@
         android:theme="@style/Theme.Job_aid"
         tools:targetApi="31">
         <activity
+            android:name=".applyNowForm"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+        <activity
+            android:name=".userViewVacancy"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+        <activity
+            android:name=".Homepage"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+        <activity
             android:name=".userViewTips"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".UserTipDetails"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".TipDetails"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".InsertTip"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".adminViewTips"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".bookmarks"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".Generate_resume"
             android:exported="true" />
@@ -37,6 +55,33 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VacancyFetching"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VacancyDetailsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VacancyAdd"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
