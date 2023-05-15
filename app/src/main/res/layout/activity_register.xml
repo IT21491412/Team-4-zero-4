@@ -8,13 +8,12 @@
     tools:context=".Register">
 
 
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="76dp"
         android:text="Create\nAccount"
         android:textColor="#210C4F"
         android:textSize="40sp"
@@ -111,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintHorizontal_bias="0.855"
         app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/userTypeRadioGroup" />
 
     <TextView
         android:id="@+id/alreadyAcc"
@@ -136,6 +135,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/confirmPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,7 +152,7 @@
             android:id="@+id/radioCompany"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Company"/>
+            android:text="Company" />
 
     </RadioGroup>
 

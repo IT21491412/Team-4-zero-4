@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import com.google.firebase.database.R
 
@@ -24,6 +25,37 @@ class VacancyFetching: AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(com.example.job_aid.R.layout.activity_added_vacancies)
+
+
+        //      Bottom  Navigation bar Starts
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(com.example.job_aid.R.id.bottomNavigationView)
+
+        val menu = bottomNavigationView.menu
+        val menuItem = menu.findItem(com.example.job_aid.R.id.navigation_home)
+        menuItem.isChecked = true
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                com.example.job_aid.R.id.navigation_home -> {
+                    startActivity(Intent(this, Home2::class.java))
+                    true
+                }
+                com.example.job_aid.R.id.navigation_vacancy -> {
+                   // startActivity(Intent(this, ::class.java))
+                    true
+                }
+
+                com.example.job_aid.R.id.navigation_profile -> {
+
+                   //  startActivity(Intent(this, ::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+
+//        bottom Navigation bar ends
 
         vacncyRecyclerView = findViewById(com.example.job_aid.R.id.rvVacancy)
         vacncyRecyclerView.layoutManager = LinearLayoutManager(this)

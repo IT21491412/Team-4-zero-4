@@ -8,8 +8,7 @@ import android.widget.Toast
 import com.example.job_aid.databinding.ActivityUserDetailsBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -20,7 +19,8 @@ class UserDetails : AppCompatActivity() {
 
     private lateinit var storageReference: StorageReference
     private lateinit var imageUri:Uri
-    private lateinit var database : DatabaseReference
+    private lateinit var database: FirebaseDatabase
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +53,7 @@ class UserDetails : AppCompatActivity() {
                 }
                 R.id.navigation_profile -> {
 
-                     startActivity(Intent(this, UserProfile::class.java))
+                    startActivity(Intent(this, UserProfile::class.java))
                     true
                 }
                 else -> false
@@ -63,97 +63,99 @@ class UserDetails : AppCompatActivity() {
 //        bottom Navigation bar ends
 
         firebaseAuth = FirebaseAuth.getInstance()
-        val uid = firebaseAuth.currentUser?.uid.toString()
-        val name = firebaseAuth.currentUser?.displayName
-        val email = firebaseAuth.currentUser?.email
+        database = FirebaseDatabase.getInstance()
+        //fetch user email and username
 
-        if(firebaseAuth.currentUser != null){
-            firebaseAuth.currentUser?.let {
+        val currentUser = firebaseAuth.currentUser
+        currentUser?.let { user ->
+            val userRef = database.reference.child("users").child(user.uid)
+            userRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val username = dataSnapshot.child("name").value as String
+                    val email = dataSnapshot.child("email").value as String
 
-                binding.etusername.text = it.uid
-                binding.etemail.text = it.email
-            }
+                    // Update the text area with the fetched data
+                    binding.etusername.text = "$username"
+                    binding.etemail.text = "$email"
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle any errors that occur during data retrieval
+                    Toast.makeText(
+                        this@UserDetails,
+                        "Failed to fetch data: ${databaseError.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
         }
 
-        database = FirebaseDatabase.getInstance().getReference("UserProfData")
-        if(uid.isNotEmpty()){
-            getUserData()
-        }
+        binding.btnDetails.setOnClickListener {
 
+            val firstName = binding.firstName.text.toString().trim()
+            val lastName = binding.lastName.text.toString().trim()
+            val address = binding.address.text.toString().trim()
+            val city = binding.city.text.toString().trim()
+            val phoneNumber = binding.phonenumber.text.toString().trim()
+            val dob = binding.dob.text.toString().trim()
+            val languages = binding.languages.text.toString().trim()
 
-
-        binding.btnSave.setOnClickListener{
-
-            val firstName = binding.firstName.text.toString()
-            val lastName = binding.lastName.text.toString()
-            val city = binding.city.text.toString()
-            val phoneNumber = binding.phonenumber.text.toString()
-            val education = binding.education.text.toString()
-            val skills = binding.skills.text.toString()
-            val languages = binding.languages.text.toString()
-
-//          val profData = mapOf<String,String>(
-//                "firstName" to firstName,
-//                "lastName" to lastName,
-//                "city" to city,
-//                "phoneNumber" to phoneNumber,
-//                "education" to education,
-//                "skills" to skills,
-//                "languages" to languages
-//           )
-
-            if (uid != null){
-
-                database = FirebaseDatabase.getInstance().getReference("UserProfData")
-                val profData = UserProfData(
-                    uid = uid,
-                    name = name,
-                    email = email,
-                    firstName = firstName,
-                    lastName = lastName,
-                    city = city,
-                    phoneNumber = phoneNumber,
-                    education = education,
-                    skills = skills,
-                    languages = languages)
-
-
-                database.child(uid).setValue(profData).addOnCompleteListener {
-
-                    if (it.isSuccessful) {
-                        //uploadProfilePic()
-
-                        Toast.makeText(this, "Successfully Added", Toast.LENGTH_SHORT).show()
-
-                        val intent = Intent(this, UserProfile::class.java)
-                        startActivity(intent)
-
-
-                    } else {
-                        Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show()
-                    }
+            // Validate the entered data
+            if (firstName.isEmpty() || lastName.isEmpty() || address.isEmpty() ||
+                city.isEmpty() || phoneNumber.isEmpty() || dob.isEmpty() || languages.isEmpty()
+            ) {
+                Toast.makeText(
+                    this,
+                    "Please fill in all the fields",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val currentUser = firebaseAuth.currentUser
+                currentUser?.let { user ->
+                    val userRef = database.reference.child("UserProfData").child(user.uid)
+                    val userProfData = UserProfData(
+                        user.uid,
+                        user.displayName,
+                        user.email,
+                        firstName,
+                        lastName,
+                        address,
+                        city,
+                        phoneNumber,
+                        dob,
+                        languages
+                    )
+                    userRef.setValue(userProfData)
+                        .addOnSuccessListener {
+                            Toast.makeText(
+                                this@UserDetails,
+                                "User details updated successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(
+                                this@UserDetails,
+                                "Failed to update user details: ${exception.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                 }
             }
+
         }
-
-
-
-
     }
 
-    private fun getUserData() {
-    }
-
-    private fun uploadProfilePic(){
-
-        imageUri  = Uri.parse("android.resource://$packageName/${R.drawable.profile}")
-        storageReference = FirebaseStorage.getInstance().getReference("users/"+firebaseAuth.currentUser?.uid)
-        storageReference.putFile(imageUri).addOnSuccessListener {
-            Toast.makeText(this,"Profile Successfully updated", Toast.LENGTH_SHORT).show()
-        }.addOnFailureListener{
-
-            Toast.makeText(this,"Failed to upload the image",Toast.LENGTH_SHORT).show()
-        }
+    private fun displayUserProfileData(userProfData: UserProfData) {
+//        binding.etusername.text = userProfData.name
+//        binding.etemail.text = userProfData.email
+        binding.firstName.setText(userProfData.firstName)
+        binding.lastName.setText(userProfData.lastName)
+        binding.address.setText(userProfData.address)
+        binding.city.setText(userProfData.city)
+        binding.phonenumber.setText(userProfData.phoneNumber)
+        binding.dob.setText(userProfData.dob)
+        binding.languages.setText(userProfData.languages)
     }
 
 }
